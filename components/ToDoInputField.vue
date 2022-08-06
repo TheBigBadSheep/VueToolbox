@@ -1,6 +1,5 @@
 <template>
-    <div class="pl-14 pb-10 rounded-lg">
-        <div class="pb-2 font-medium"> TODO </div>
+    <div class="pl-14 pb-24 rounded-lg">
         <div class="flex">
             <input
                 v-model="item"
