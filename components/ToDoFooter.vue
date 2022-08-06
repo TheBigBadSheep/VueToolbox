@@ -9,7 +9,7 @@
                 <div class="relative py-1">
                     <span v-if="itemsLeft.length == 1" class="absolute inset-x-14 text-xs sm:text-sm opacity-80 mt-1 sm:mt-0"> {{ itemsLeft.length }} Item left </span>
                     <span v-if="itemsLeft.length != 1" class="absolute inset-x-14 text-xs sm:text-sm opacity-80 mt-1 sm:mt-0"> {{ itemsLeft.length }} Items left </span>
-                    <div class="w-full flex justify-center gap-4 -mt-0.5 ml-16 lg:ml-0">
+                    <div class="w-full flex justify-center gap-4 -mt-0.5 pl-14 lg:ml-0">
                         <button
                             class="text-xs sm:text-sm rounded-lg px-2 border-2 border-transparent opacity-80 transition ease-in-out duration-200"
                             :class="{active: filter == 'all', 'border-ToDo-LightGreen border-opacity-20s shadow-sm': filter == 'all' }"

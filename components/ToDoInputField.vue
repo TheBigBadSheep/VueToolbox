@@ -8,7 +8,7 @@
                 type="text"
                 placeholder="What needs to be done?"
                 @keypress.enter="addItem">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-11 w-11 mt-1 ml-2 text-ToDo-DarkGreen hover:text-white " fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-11 w-11 mt-1 ml-2 text-ToDo-DarkGreen hover:text-white transition ease-in-out duration-200 cursor-pointer " fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
                 @click="addItem">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z" />
                 </svg>
