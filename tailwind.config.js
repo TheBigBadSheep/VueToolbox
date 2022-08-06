@@ -9,7 +9,8 @@ module.exports = {
       colors: {
         ToDo: {
           Green: '#CEDCBC',
-          LightGreen: '#DAF1BC'
+          LightGreen: '#DAF1BC',
+          DarkGreen: '#9CB08D'
         }
       }
     },

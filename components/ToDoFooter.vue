@@ -2,30 +2,34 @@
     <div>
         <footer v-show="items.length > 0">
             <div class="bg-white h-9 py-1">
-                <div class="flex py-1 justify-between">
-                    <span v-if="itemsLeft.length == 1" class="text-xs sm:text-sm opacity-80 mt-1 sm:mt-0"> {{ itemsLeft.length }} Item left </span>
-                    <span v-if="itemsLeft.length != 1" class="text-xs sm:text-sm opacity-80 mt-1 sm:mt-0"> {{ itemsLeft.length }} Items left </span>
-                    <div class="-mt-0.5 ml-16 lg:ml-0">
+                <div class="flex justify-center pl-14 mb-4 disable-select">
+                    <span v-if="!allChecked" @click="checkAll" class="bg-gray-100 text-sm text-gray-400 py-0.5 px-3 rounded-md cursor-pointer hover:text-gray-600 transition ease-in-out duration-200">Check All</span>
+                    <span v-if="allChecked" @click="checkAll" class="bg-gray-100 text-sm text-gray-400 py-0.5 px-3 rounded-md cursor-pointer hover:text-gray-600 transition ease-in-out duration-200">Uncheck All</span>
+                </div>
+                <div class="relative py-1">
+                    <span v-if="itemsLeft.length == 1" class="absolute inset-x-14 text-xs sm:text-sm opacity-80 mt-1 sm:mt-0"> {{ itemsLeft.length }} Item left </span>
+                    <span v-if="itemsLeft.length != 1" class="absolute inset-x-14 text-xs sm:text-sm opacity-80 mt-1 sm:mt-0"> {{ itemsLeft.length }} Items left </span>
+                    <div class="w-full flex justify-center gap-4 -mt-0.5 ml-16 lg:ml-0">
                         <button
-                        class="text-xs sm:text-sm rounded-lg px-2 border-2 border-transparent opacity-80 "
-                        :class="{active: filter == 'all', 'border-ToDo-LightGreen border-opacity-20s shadow-sm': filter == 'all' }"
-                        @click="onChangeFilter" @focus="filter='all'"> All
+                            class="text-xs sm:text-sm rounded-lg px-2 border-2 border-transparent opacity-80 transition ease-in-out duration-200"
+                            :class="{active: filter == 'all', 'border-ToDo-LightGreen border-opacity-20s shadow-sm': filter == 'all' }"
+                            @click="onChangeFilter" @focus="filter='all'"> All
                         </button>
                         <button
-                        class="text-xs sm:text-sm rounded-lg px-2 border-2 border-transparent opacity-80 "
-                        :class="{active: filter == 'all', 'border-ToDo-LightGreen border-opacity-20s shadow-sm': filter == 'active' }"
-                        @click="onChangeFilter" @focus="filter='active'"> Active
+                            class="text-xs sm:text-sm rounded-lg px-2 border-2 border-transparent opacity-80 transition ease-in-out duration-200"
+                            :class="{active: filter == 'all', 'border-ToDo-LightGreen border-opacity-20s shadow-sm': filter == 'active' }"
+                            @click="onChangeFilter" @focus="filter='active'"> Active
                         </button>
                         <button
-                        class="text-xs sm:text-sm rounded-lg px-2 border-2 border-transparent opacity-80 "
-                        :class="{active: filter == 'all', 'border-ToDo-LightGreen border-opacity-20s shadow-sm': filter == 'completed' }"
-                        @click="onChangeFilter" @focus="filter='completed'"> Completed
+                            class="text-xs sm:text-sm rounded-lg px-2 border-2 border-transparent opacity-80 transition ease-in-out duration-200"
+                            :class="{active: filter == 'all', 'border-ToDo-LightGreen border-opacity-20s shadow-sm': filter == 'completed' }"
+                            @click="onChangeFilter" @focus="filter='completed'"> Completed
                         </button>
                     </div>
                     <div class="">
                         <span v-show="atLeastOneChecked">
                             <button
-                            class="absolute opacity-0 text-null -ml-28 sm:opacity-80 hover:underline hover:text-ToDo-Green mt-1 sm:mt-0 sm:text-sm"
+                            class="absolute inset-y-0 right-0 opacity-0 text-null -ml-28 sm:opacity-80 hover:text-red-400 mt-1 sm:mt-0 sm:text-sm transition ease-in-out duration-200"
                             @click="clearCompleted"> Clear completed
                             </button>
 
@@ -61,6 +65,10 @@ export default {
         atLeastOneChecked(){
             return this.itemsLeft.length !== this.items.length
         },
+        
+        allChecked(){
+            return this.itemsLeft.length === 0
+        },
     },
     methods: {
         onChangeFilter(){
@@ -69,7 +77,19 @@ export default {
 
         clearCompleted(){
             this.$store.dispatch('clearCompleted')
+        },
+
+        checkAll(){
+            this.$store.dispatch('checkAllToDos')
         }
     }
 }
 </script>
+<style>
+.disable-select {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+</style>
