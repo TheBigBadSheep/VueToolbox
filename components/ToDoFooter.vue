@@ -6,7 +6,7 @@
                     <span v-if="!allChecked" @click="checkAll" class="bg-gray-100 text-sm text-gray-400 py-0.5 px-3 rounded-md cursor-pointer hover:text-gray-600 transition ease-in-out duration-200">Check All</span>
                     <span v-if="allChecked" @click="checkAll" class="bg-gray-100 text-sm text-gray-400 py-0.5 px-3 rounded-md cursor-pointer hover:text-gray-600 transition ease-in-out duration-200">Uncheck All</span>
                 </div>
-                <div class="relative py-1">
+                <div class="relative py-1 pb-10">
                     <span v-if="itemsLeft.length == 1" class="absolute inset-x-14 text-xs sm:text-sm opacity-80 mt-1 sm:mt-0"> {{ itemsLeft.length }} Item left </span>
                     <span v-if="itemsLeft.length != 1" class="absolute inset-x-14 text-xs sm:text-sm opacity-80 mt-1 sm:mt-0"> {{ itemsLeft.length }} Items left </span>
                     <div class="w-full flex justify-center gap-4 -mt-0.5 pl-14 lg:ml-0">
@@ -26,10 +26,10 @@
                             @click="onChangeFilter" @focus="filter='completed'"> Completed
                         </button>
                     </div>
-                    <div class="">
+                    <div class="py-1">
                         <span v-show="atLeastOneChecked">
                             <button
-                            class="absolute inset-y-0 right-0 opacity-0 text-null -ml-28 sm:opacity-80 hover:text-red-400 mt-1 sm:mt-0 sm:text-sm transition ease-in-out duration-200"
+                            class="absolute top-1 right-0 opacity-0 text-null -ml-28 sm:opacity-80 hover:text-red-400 mt-1 sm:mt-0 sm:text-sm transition ease-in-out duration-200"
                             @click="clearCompleted"> Clear completed
                             </button>
 
