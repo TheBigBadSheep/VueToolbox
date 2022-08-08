@@ -4,21 +4,19 @@
     <ToDoInputField
       :show-check-box="showCheckBox"
       :all-checked="allChecked"
-      class="">
-     </ToDoInputField>
+      class=""/>
+    
 
-    <ToDoListItem
-    v-for="(item, index) in itemsFiltered"
-    :key="index"
-    :item="item"
-    @onCheckedNiklas="(id) => markAsCheckedNiklas(id)"
-    class=""
-    >
-    </ToDoListItem>
+    <transition-group name="list">
+      <ToDoListItem
+        v-for="(item) in itemsFiltered"
+        :key="item.id"
+        :item="item"
+        @onCheckedNiklas="(id) => markAsCheckedNiklas(id)"
+        class=""/>
+    </transition-group>  
 
-    <ToDoFooter
-    :items="items">
-    </ToDoFooter>
+    <ToDoFooter :items="items"/>
   </div>
 </template>
 
@@ -76,3 +74,17 @@ export default {
 
   }
 </script>
+
+<style>
+.list-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+.list-enter-active, .list-leave-active {
+  transition: all 0.5s;
+}
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateX(20px);
+}
+</style>
